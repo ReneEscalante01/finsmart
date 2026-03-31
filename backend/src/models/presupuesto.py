@@ -1,7 +1,6 @@
 from sqlalchemy import Column, ForeignKey, String, DATE, Float
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
-from sqlalchemy.sql import func
 from src.database import Base
 
 class Presupuesto(Base):
