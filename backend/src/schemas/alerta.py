@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 from uuid import UUID
 from datetime import datetime
 from typing import Optional
@@ -9,8 +9,15 @@ class AlertaBase(BaseModel):
     valor_detectado: Optional[float] = None
     leida: bool = False
     
-class AlertaCreate(AlertaBase):
-    usuario_id: UUID
+    @field_validator("tipo_alerta", "mensaje")
+    @classmethod
+    def vacio(cls, v):
+        if v is not None and v.strip() == "":
+            raise ValueError("El campo no puede estar vacio")
+        return v
+
+class AlertaUpdate(BaseModel):
+    leida: Optional[bool] = None
     
 class AlertaResponse(AlertaBase):
     id: UUID
@@ -19,4 +26,11 @@ class AlertaResponse(AlertaBase):
 
     
     class Config: 
+        from_attributes = True
+        
+class AlertaResponseModel(BaseModel):
+    message: str
+    data: Optional[AlertaResponse] = None
+    
+    class Config:
         from_attributes = True
