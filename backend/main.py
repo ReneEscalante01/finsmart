@@ -9,6 +9,7 @@ from src.routers.presupuesto import router as presupuestos_router
 from src.routers.transaccion import router as transacciones_router
 from src.routers.usuario import router as usuarios_router
 from src.routers.rol import router as roles_router
+from src.routers.ml import router as ml_routers
 
 load_dotenv()
 
@@ -21,6 +22,7 @@ app.include_router(presupuestos_router)
 app.include_router(transacciones_router)
 app.include_router(usuarios_router)
 app.include_router(roles_router)
+app.include_router(ml_routers)
 
 @app.get("/")
 def root():
