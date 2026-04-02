@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean
+from sqlalchemy import Column, String, Boolean, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from src.database import Base
@@ -10,3 +10,4 @@ class Categoria(Base):
     icono = Column(String(50))
     color = Column(String(30))
     es_default = Column(Boolean, default=False)
+    usuario_id = Column(UUID(as_uuid=True), ForeignKey("usuarios.id", ondelete="CASCADE"), nullable=True)

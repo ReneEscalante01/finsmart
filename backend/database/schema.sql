@@ -58,3 +58,8 @@ CREATE TABLE alertas_ml (
 	leida BOOLEAN DEFAULT FALSE,
 	generada_en TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE roles (
+	id SERIAL PRIMARY KEY,
+	nombre_rol VARCHAR(20) NOT NULL
+);

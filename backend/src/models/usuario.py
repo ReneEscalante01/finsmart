@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, TIMESTAMP
+from sqlalchemy import Column, String, TIMESTAMP, ForeignKey, Integer
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
 from sqlalchemy.sql import func
@@ -12,3 +12,4 @@ class Usuario(Base):
     contrasena_hash = Column(String(250), nullable=False)
     moneda = Column(String(10), default="MXN")
     fecha_creacion = Column(TIMESTAMP, server_default=func.now())
+    rol_id = Column(Integer, ForeignKey("roles.id"))
